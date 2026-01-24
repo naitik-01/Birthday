@@ -2,104 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>A Special Surprise ❤️</title>
-
-<!-- REQUIRED FOR JScex (GitHub Pages fix) -->
-<meta http-equiv="Content-Security-Policy"
-      content="script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com 'unsafe-eval'">
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffe;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#start-btn {
-    position: fixed;
-    z-index: 9999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 18px 36px;
-    font-size: 22px;
-    border-radius: 50px;
-    border: none;
-    background: #ff4d4d;
-    color: white;
-    cursor: pointer;
-    font-family: 'Dancing Script', cursive;
-    box-shadow: 0 8px 25px rgba(255, 77, 77, 0.4);
-}
-
-#watermark-container {
-    position: fixed;
-    inset: 0;
-    display: none;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
-    pointer-events: none;
-    opacity: 0.05;
-}
-
-.watermark-item {
-    font-family: 'Dancing Script', cursive;
-    font-size: 30px;
-    color: #ff4d4d;
-}
-
-#wrap {
-    position: relative;
-    width: 1100px;
-    height: 680px;
-}
-
-#text {
-    position: absolute;
-    width: 500px;
-    left: 60px;
-    top: 60px;
-    color: #444;
-    font-size: 20px;
-    line-height: 1.8;
-    z-index: 10;
-}
-
-#code { display: none; }
-
-#clock-box {
-    position: absolute;
-    left: 60px;
-    top: 520px;
-    font-size: 24px;
-    color: #ff758c;
-    font-weight: bold;
-    display: none;
-    background: rgba(255,255,238,0.9);
-    padding: 12px;
-    border-radius: 12px;
-}
-
-canvas {
-    display: block;
-    margin: 0 auto;
-}
-
-/* Responsive scaling */
-@media (max-width: 1100px) { #wrap { transform: scale(0.6); } }
-@media (max-width: 768px)  { #wrap { transform: scale(0.45); } }
-@media (max-width: 480px)  { #wrap { transform: scale(0.33); } }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday! ❤️</title>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Real-Sam/her-birthday@main/file/jscex.min.js"></script>
@@ -110,118 +14,321 @@ canvas {
 <script src="https://cdn.jsdelivr.net/gh/Real-Sam/her-birthday@main/file/jscex-async-powerpack.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Real-Sam/her-birthday@main/file/function.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Real-Sam/her-birthday@main/file/love.js"></script>
-</head>
 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Sacramento&display=swap" rel="stylesheet">
+
+<style>
+    /* --- CSS STYLING --- */
+    body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at center, #ffdde1, #ee9ca7);
+        overflow: hidden;
+        font-family: 'Sacramento', cursive;
+    }
+
+    /* Falling Hearts Animation */
+    .heart {
+        position: absolute;
+        top: -10px;
+        color: #ff4d4d;
+        font-size: 20px;
+        animation: fall linear forwards;
+        z-index: 1;
+        opacity: 0.8;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(105vh); }
+    }
+
+    /* Start Button Pulse Effect */
+    #start-btn {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 50px;
+        font-size: 30px;
+        border: none;
+        border-radius: 50px;
+        background: #ff4757;
+        color: white;
+        cursor: pointer;
+        font-family: 'Dancing Script', cursive;
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.5);
+        z-index: 1000;
+        animation: pulse 1.5s infinite;
+        transition: all 0.3s ease;
+    }
+
+    #start-btn:hover {
+        background: #ff6b81;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+        70% { box-shadow: 0 0 0 20px rgba(255, 71, 87, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+    }
+
+    /* Music Control */
+    #music-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 10px;
+        border-radius: 50%;
+        display: none; /* Hidden until start */
+    }
+
+    /* Layout Containers */
+    #main {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none; /* Hidden until start */
+        justify-content: center;
+        align-items: center;
+    }
+
+    #wrap {
+        position: relative;
+        width: 1100px;
+        height: 680px;
+        margin: 0 auto;
+    }
+
+    #text {
+        position: absolute;
+        width: 400px;
+        height: 425px;
+        left: 60px;
+        top: 80px;
+        color: #d63031;
+        font-size: 26px; /* Larger Text */
+        line-height: 1.8;
+        z-index: 10;
+        font-family: 'Dancing Script', cursive;
+    }
+
+    #clock-box {
+        position: absolute;
+        left: 60px;
+        bottom: 40px;
+        font-size: 20px;
+        color: #444;
+        display: none;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 10px 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    #clock-box span {
+        font-size: 28px;
+        color: #ff4757;
+        font-weight: bold;
+    }
+
+    /* Mobile Scaling */
+    @media (max-width: 1100px) { #wrap { transform: scale(0.8); transform-origin: top center; } }
+    @media (max-width: 768px)  { 
+        #wrap { transform: scale(0.5); transform-origin: top center; } 
+        #text { font-size: 34px; width: 600px; } /* Increase font for mobile read */
+    }
+    @media (max-width: 480px)  { 
+        #wrap { transform: scale(0.38); transform-origin: top left; margin-left: 20px;} 
+    }
+</style>
+</head>
 <body>
 
-<button id="start-btn" onclick="initSurprise()">❤️ Click for Surprise</button>
+    <audio id="bgm" loop>
+        <source src="https://raw.githubusercontent.com/Makin10/Happy-Birthday/master/music/happy-birthday.mp3" type="audio/mp3">
+        Your browser does not support audio.
+    </audio>
 
-<div id="watermark-container">
-    <div class="watermark-item">HAPPY BIRTHDAY</div>
-    <div class="watermark-item">HAPPY BIRTHDAY</div>
-    <div class="watermark-item">HAPPY BIRTHDAY</div>
-    <div class="watermark-item">HAPPY BIRTHDAY</div>
-</div>
+    <button id="start-btn" onclick="initSurprise()">🎁 Click for Surprise</button>
+    
+    <div id="music-control" onclick="toggleAudio()">🔇</div>
 
-<div id="wrap">
-    <div id="text">
-        <div id="code">
-            <span class="say">Hey you 💞</span><br>
-            <span class="say">Happy Birthday 🎈</span><br>
-            <span class="say">I’m sorry I haven’t been there lately…</span><br>
-            <span class="say">And for the time I couldn’t give.</span><br>
-            <span class="say">You deserve the world.</span><br>
-            <span class="say">I hope today feels special ✨</span><br><br>
-            <span class="say">Always yours ❤️</span>
+    <div id="main">
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <span class="say">Hey Sweetheart,</span><br>
+                    <span class="say">Happy Birthday! 🎈</span><br>
+                    <span class="say">Sorry if I've been busy lately...</span><br>
+                    <span class="say">But you are always on my mind.</span><br>
+                    <span class="say">You are the sparkle in my life,</span><br>
+                    <span class="say">And you deserve the whole universe.</span><br>
+                    <span class="say">I hope today is as beautiful as you. ✨</span><br>
+                    <br>
+                    <span class="say"><b>Forever yours,</b></span><br>
+                    <span class="say">Naitik ❤️</span>
+                </div>
+            </div>
+
+            <div id="clock-box">
+                <span id="clock"></span>
+            </div>
+
+            <canvas id="canvas" width="1100" height="680"></canvas>
         </div>
     </div>
 
-    <div id="clock-box">
-        Countdown to your day:<br>
-        <span id="clock"></span>
-    </div>
-
-    <canvas id="canvas" width="1100" height="680"></canvas>
-</div>
-
 <script>
-function initSurprise() {
-    $("#start-btn").remove();
-    $("#watermark-container").fadeIn(2000).css("display", "flex");
-    startAnimation();
-}
+    // --- SETTINGS ---
+    // Set the birthday date here (Year-Month-Day)
+    var birthDateString = "2025-12-24"; 
+    // ----------------
+    
+    var audio = document.getElementById("bgm");
+    var musicBtn = document.getElementById("music-control");
 
-function startAnimation() {
-    var canvas = $('#canvas');
-    var width = canvas.width();
-    var height = canvas.height();
-    var targetDate = new Date("2025-12-24T00:00:00");
-
-    var opts = {
-        seed: { x: width / 2 - 20, color: "rgb(190, 26, 37)", scale: 2 },
-        branch: [[535,680,570,250,500,200,30,100,[
-            [540,500,455,417,340,400,13,100,[[450,435,434,430,394,395,2,40]]],
-            [550,445,600,356,680,345,12,100,[[578,400,648,409,661,426,3,80]]]
-        ]]],
-        bloom: { num: 700, width: 1080, height: 650 },
-        footer: { width: 1200, height: 5, speed: 10 }
-    };
-
-    var tree = new Tree(canvas[0], width, height, opts);
-    var seed = tree.seed;
-    var foot = tree.footer;
-
-    var runAsync = eval(Jscex.compile("async", function () {
-        $await(seedAnimate());
-        $await(growAnimate());
-        $await(flowAnimate());
-        $await(moveAnimate());
-        textAnimate().start();
-    }));
-
-    var seedAnimate = eval(Jscex.compile("async", function () {
-        seed.draw();
-        while (seed.canScale()) { seed.scale(0.95); $await(Jscex.Async.sleep(10)); }
-        while (seed.canMove()) { seed.move(0, 2); foot.draw(); $await(Jscex.Async.sleep(10)); }
-    }));
-
-    var growAnimate = eval(Jscex.compile("async", function () {
-        do { tree.grow(); $await(Jscex.Async.sleep(10)); } while (tree.canGrow());
-    }));
-
-    var flowAnimate = eval(Jscex.compile("async", function () {
-        do { tree.flower(2); $await(Jscex.Async.sleep(10)); } while (tree.canFlower());
-    }));
-
-    var moveAnimate = eval(Jscex.compile("async", function () {
-        tree.snapshot("p1", 240, 0, 610, 680);
-        while (tree.move("p1", 500, 0)) { foot.draw(); $await(Jscex.Async.sleep(10)); }
-        foot.draw();
-    }));
-
-    var textAnimate = eval(Jscex.compile("async", function () {
-        $("#code").show().typewriter();
-        $("#clock-box").fadeIn(500);
-        while (true) {
-            var now = new Date();
-            var seconds = (targetDate - now) / 1000;
-            if (seconds > 0) {
-                var d = Math.floor(seconds / 86400);
-                seconds %= 86400;
-                var h = Math.floor(seconds / 3600);
-                seconds %= 3600;
-                var m = Math.floor(seconds / 60);
-                var s = Math.floor(seconds % 60);
-                $("#clock").html(`${d}d ${h}h ${m}m ${s}s`);
-            } else {
-                $("#clock").html("🎉 It’s your day ❤️");
-            }
-            $await(Jscex.Async.sleep(1000));
+    function toggleAudio() {
+        if (audio.paused) {
+            audio.play();
+            musicBtn.innerHTML = "🔊";
+        } else {
+            audio.pause();
+            musicBtn.innerHTML = "🔇";
         }
-    }));
+    }
 
-    runAsync().start();
-}
+    function createFallingHearts() {
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }, 300);
+    }
+
+    function initSurprise() {
+        $("#start-btn").fadeOut();
+        $("#main").fadeIn();
+        $("#music-control").fadeIn().css("display", "block");
+        
+        // Attempt auto-play
+        audio.play().then(() => {
+            musicBtn.innerHTML = "🔊";
+        }).catch(err => {
+            console.log("Audio autoplay blocked, waiting for user interaction");
+            musicBtn.innerHTML = "🔇";
+        });
+
+        createFallingHearts();
+        startAnimation();
+    }
+
+    function startAnimation() {
+        var canvas = $('#canvas');
+        var width = canvas.width();
+        var height = canvas.height();
+        
+        var opts = {
+            seed: { x: width / 2 - 20, color: "rgb(190, 26, 37)", scale: 2 },
+            branch: [[535,680,570,250,500,200,30,100,[
+                [540,500,455,417,340,400,13,100,[[450,435,434,430,394,395,2,40]]],
+                [550,445,600,356,680,345,12,100,[[578,400,648,409,661,426,3,80]]]
+            ]]],
+            bloom: { num: 700, width: 1080, height: 650 },
+            footer: { width: 1200, height: 5, speed: 10 }
+        };
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+            textAnimate().start();
+            $await(jumpAnimate());
+        }));
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (seed.canScale()) { seed.scale(0.95); $await(Jscex.Async.sleep(10)); }
+            while (seed.canMove()) { seed.move(0, 2); foot.draw(); $await(Jscex.Async.sleep(10)); }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do { tree.grow(); $await(Jscex.Async.sleep(10)); } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do { tree.flower(2); $await(Jscex.Async.sleep(10)); } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) { foot.draw(); $await(Jscex.Async.sleep(10)); }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var start = new Date(birthDateString + "T00:00:00");
+            start.setHours(0);
+            start.setMinutes(0);
+            start.setSeconds(0);
+            start.setMilliseconds(0);
+
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+
+            while (true) {
+                var now = new Date();
+                var seconds = (start - now) / 1000;
+                
+                if (seconds < 0) {
+                     $("#clock").html("🎉 It's your day! Happy Birthday! ❤️");
+                } else {
+                    var d = Math.floor(seconds / (3600 * 24));
+                    var h = Math.floor((seconds % (3600 * 24)) / 3600);
+                    var m = Math.floor((seconds % 3600) / 60);
+                    var s = Math.floor(seconds % 60);
+                    h = h < 10 ? "0" + h : h;
+                    m = m < 10 ? "0" + m : m;
+                    s = s < 10 ? "0" + s : s;
+                    $("#clock").html("Countdown: " + d + " days " + h + ":" + m + ":" + s);
+                }
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        runAsync().start();
+    }
 </script>
 
 </body>
