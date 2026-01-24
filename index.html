@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday! ❤️</title>
+<title>Happy Birthday! 🎈</title>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Real-Sam/her-birthday@main/file/jscex.min.js"></script>
@@ -73,24 +73,6 @@
         100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
     }
 
-    /* Music Control */
-    #music-control {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        font-size: 30px;
-        cursor: pointer;
-        z-index: 1001;
-        background: rgba(255, 255, 255, 0.8);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: none; /* Hidden until start */
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
     /* Layout Containers */
     #main {
         position: absolute;
@@ -110,12 +92,12 @@
 
     #text {
         position: absolute;
-        width: 400px;
+        width: 450px; /* Slightly wider for new text */
         height: 425px;
         left: 60px;
         top: 80px;
         color: #d63031;
-        font-size: 26px; /* Larger Text */
+        font-size: 26px; 
         line-height: 1.8;
         z-index: 10;
         font-family: 'Dancing Script', cursive;
@@ -154,42 +136,26 @@
 </head>
 <body>
 
-    <audio id="bgm" loop>
-        <source src="https://raw.githubusercontent.com/ayusharma/birthday/master/music/song.mp3" type="audio/mp3">
-        Your browser does not support audio.
-    </audio>
-
-    <button id="start-btn" onclick="initSurprise()">🎁 Click for Surprise</button>
+    <button id="start-btn" onclick="initSurprise()">🎁 Click to Open</button>
     
-    <div id="music-control" onclick="toggleAudio()">🎵</div>
-
     <div id="main">
         <div id="wrap">
             <div id="text">
                 <div id="code">
-<span class="say">Hey you,</span><br>
-<span class="say">Happy Birthday 🎂</span><br>
-<br>
-<span class="say">I don’t know how to put this perfectly,</span><br>
-<span class="say">but some people slowly become important</span><br>
-<span class="say">without making any noise.</span><br>
-<br>
-<span class="say">Talking to you feels easy,</span><br>
-<span class="say">being around you feels familiar,</span><br>
-<span class="say">and somewhere in between,</span><br>
-<span class="say">you started to matter more than you know.</span><br>
-<br>
-<span class="say">On your birthday,</span><br>
-<span class="say">I just hope you feel appreciated,</span><br>
-<span class="say">smile a little more,</span><br>
-<span class="say">and know that there’s someone</span><br>
-<span class="say">who genuinely wishes good things for you.</span><br>
-<br>
-<span class="say">Whatever this becomes,</span><br>
-<span class="say">I’m glad it started with you.</span><br>
-<br>
-<span class="say"><b>— Naitik 💫</b></span>
-
+                    <span class="say">Hey, Happy Birthday! 🎂</span><br>
+                    <span class="say"> (I know... I'm a little late 🙈)</span><br>
+                    <br>
+                    <span class="say">Life got a bit busy, but I didn't want</span><br>
+                    <span class="say">to miss the chance to wish you.</span><br>
+                    <br>
+                    <span class="say">I hope your day was filled with</span><br>
+                    <span class="say">laughter, good food, and great people.</span><br>
+                    <br>
+                    <span class="say">Here’s to a year that brings you</span><br>
+                    <span class="say">everything you’re looking for!</span><br>
+                    <br>
+                    <span class="say">Cheers,</span><br>
+                    <span class="say"><b>Naitik ✨</b></span>
                 </div>
             </div>
 
@@ -207,51 +173,23 @@
     var birthDateString = "2025-12-24"; 
     // ----------------
     
-    var audio = document.getElementById("bgm");
-    var musicBtn = document.getElementById("music-control");
-
-    function toggleAudio() {
-        if (audio.paused) {
-            audio.play();
-            musicBtn.innerHTML = "🔊";
-        } else {
-            audio.pause();
-            musicBtn.innerHTML = "🔇";
-        }
-    }
-
     function createFallingHearts() {
         setInterval(() => {
             const heart = document.createElement("div");
             heart.classList.add("heart");
-            heart.innerHTML = "❤️";
+            heart.innerHTML = "🎈"; // Changed to balloons for a lighter vibe (or use ❤️)
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = Math.random() * 3 + 2 + "s";
             heart.style.fontSize = Math.random() * 20 + 10 + "px";
             document.body.appendChild(heart);
             setTimeout(() => { heart.remove(); }, 5000);
-        }, 300);
+        }, 400);
     }
 
     function initSurprise() {
         $("#start-btn").fadeOut();
         $("#main").fadeIn();
-        $("#music-control").fadeIn().css("display", "flex");
         
-        // Auto-play music on interaction
-        audio.volume = 0.5; // Set volume to 50%
-        var playPromise = audio.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                musicBtn.innerHTML = "🔊";
-            })
-            .catch(error => {
-                console.log("Auto-play blocked. User needs to click music icon.");
-                musicBtn.innerHTML = "🔇";
-            });
-        }
-
         createFallingHearts();
         startAnimation();
     }
@@ -327,19 +265,18 @@
                 var now = new Date();
                 var seconds = (start - now) / 1000;
                 
+                // Since you are late, we simply show a nice message instead of a countdown
                 if (seconds < 0) {
-                     $("#clock").html("🎉 Happy Birthday! ❤️");
+                     $("#clock").html("🎉 Wishing you the best! 🎈");
                 } else {
                     var d = Math.floor(seconds / (3600 * 24));
                     var h = Math.floor((seconds % (3600 * 24)) / 3600);
                     var m = Math.floor((seconds % 3600) / 60);
                     var s = Math.floor(seconds % 60);
-                    
                     if (h < 10) h = "0" + h;
                     if (m < 10) m = "0" + m;
                     if (s < 10) s = "0" + s;
-                    
-                    $("#clock").html("Wait for it: " + d + "d " + h + ":" + m + ":" + s);
+                    $("#clock").html("Countdown: " + d + "d " + h + ":" + m + ":" + s);
                 }
                 $await(Jscex.Async.sleep(1000));
             }
